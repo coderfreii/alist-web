@@ -1,20 +1,58 @@
 {
+  "include": ["src/**/*"],
+
   "compilerOptions": {
+    "baseUrl": "./",
+    // "allowJs": true,
+
+    // // // Generate d.ts files
+    // "declaration": true,
+    // // // go to js file when using IDE functions like
+    // // // "Go to Definition" in VSCode
+    // "declarationMap": true,
+
+    // 启用 TypeScript 严格模式，强制执行更多的类型检查
     "strict": true,
+
+    // 指定生成的 JavaScript 目标版本为最新的 ECMAScript 标准
     "target": "ESNext",
+
+    // 指定生成的模块代码类型为最新的模块标准
     "module": "ESNext",
+
+    // 使用 Node.js 的模块解析算法
     "moduleResolution": "node",
+
+    // 允许合成默认导出
     "allowSyntheticDefaultImports": true,
+
+    // 启用 ES 模块导入 CommonJS 模块的交互性
     "esModuleInterop": true,
+
+    // 保留 JSX 语法，不进行转换
     "jsx": "preserve",
+
+    // 指定 JSX 中 import 语句的来源为 "solid-js"
     "jsxImportSource": "solid-js",
+
+    // 包含 "vite/client" 类型声明文件
     "types": ["vite/client"],
+
+    // 禁止生成输出文件，仅进行类型检查
     "noEmit": true,
+
+    // 假定每个文件是独立的模块
     "isolatedModules": false,
+
+    // 配置模块别名的映射
     "paths": {
-      "~/*": ["./src/*"],
-      "@solidjs/router": ["./solid-router/src/index.tsx"]
+      "~/*": ["./src/*"] //这里貌似只做检查和提示
+      // "@solidjs/router": ["./solid-router/src/index.tsx"]
+
+      // "mypackage":["./src/mypackage"]
     },
+
+    // 允许导入 JSON 文件作为模块
     "resolveJsonModule": true
   }
 }

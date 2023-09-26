@@ -5,3 +5,7 @@ declare namespace aliyun {
   }
   function config(options: { mount: Element; url: string }): Config
 }
+
+declare namespace my_namespace {
+  function a(): any
+}

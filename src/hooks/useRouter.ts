@@ -14,7 +14,7 @@ const useRouter = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const params = useParams()
   const pathname = createMemo(() => {
-    return trimBase(location.pathname)
+    return trimBase(globalThis.decodeURIComponent(location.pathname))
   })
   return {
     to: (
@@ -29,7 +29,15 @@ const useRouter = () => {
       navigate(path, options)
     },
     replace: (to: string) => {
-      navigate(encodePath(pathJoin(pathDir(location.pathname), to), true))
+      navigate(
+        encodePath(
+          pathJoin(
+            pathDir(globalThis.decodeURIComponent(location.pathname)),
+            to,
+          ),
+          true,
+        ),
+      )
     },
     pushHref: (to: string): string => {
       const href = encodePath(pathJoin(pathname(), to))

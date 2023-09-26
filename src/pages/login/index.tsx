@@ -266,8 +266,13 @@ const Login = () => {
           color="$neutral10"
           w="$full"
         >
-          <SwitchLanguageWhite />
-          <SwitchColorMode />
+          <div>
+            {" "}
+            <SwitchLanguageWhite />
+          </div>
+          <div>
+            <SwitchColorMode />
+          </div>
           <SSOLogin />
           <Show when={AuthnSignEnabled}>
             <Icon

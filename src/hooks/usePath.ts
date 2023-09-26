@@ -19,6 +19,16 @@ import {
 import { useFetch } from "./useFetch"
 import { useRouter } from "./useRouter"
 
+function sortByNumberBeforeDunhao(item: { name: string }) {
+  // 使用正则表达式从字符串中提取顿号前的数字
+  const match = item.name.match(/^\d+/)
+  // 如果找到数字，则将其转换为整数并返回，否则返回0
+  if (match) {
+    return parseInt(match[0])
+  }
+  return 0
+}
+
 let cancelList: Canceler
 export function addOrUpdateQuery(
   key: string,
@@ -174,9 +184,19 @@ export const usePath = () => {
     globalPage = index ?? 1
     ObjStore.setState(append ? State.FetchingMore : State.FetchingObjs)
     const resp = await getObjs({ path, index, size, force })
+
     handleRespWithoutNotify(
       resp,
       (data) => {
+        //临时使用，不支持分页，应该后端排序或者前端控件排序
+        data.content = data.content
+          ? data.content.sort((a: { name: string }, b: { name: string }) => {
+              const numberA = sortByNumberBeforeDunhao(a)
+              const numberB = sortByNumberBeforeDunhao(b)
+              return numberA - numberB
+            })
+          : []
+
         if (append) {
           appendObjs(data.content)
         } else {

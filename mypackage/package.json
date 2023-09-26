@@ -1,0 +1,26 @@
+{
+  "name": "mypackage",
+  "version": "1.0.0",
+  "description": "hahaha",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./sub": {
+      "import": "./dist/sub.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "sub": [
+        "./dist/sub.d.ts"
+      ]
+    }
+  },
+  "author": "",
+  "license": "ISC"
+}
